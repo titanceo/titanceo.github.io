@@ -1,8 +1,84 @@
-<h1>Types, Type Inference y Type keyword</h1>
+<h2>Union Types</h2>
+
+<p>
+  Habrá ocasiones en las que necesitemos asignar variables con más de un tipo, para evitar el uso de any debemos usar union types. Utilizando el signo ‘|’ podemos indicarle a TypeScript que utilice uno u otro tipo de dato, por ejemplo:
+</p>
+<p>Para el union types el interfaceMix puede tener el atributo <span class="code-ts">prop1:2</span> o el atributo <span class="code-ts">prop2:3</span> o como en este caso los dos</p>
+
+
 
 <pre>
-  <code class="js">
-    console.log('ahora si');
+  <code class="ts">
+    type SumaParameter = string | number;
+    type SumaReturnType = string | number;
+
+    functionSuma(num1: SumaParameter, num2: SumaParameter): SumaReturnType{
+        returnNumber(num1) + Number(num2);
+    }
+
+    //Con respecto a las interfaces
+
+    interface Interface1 {
+        prop1: number;
+    }
+
+    interface Interface2 {
+        prop2: number;
+    }
+
+    type InterfaceMix = Interface1 | Interface2;
+    const interfacemix: InterfaceMix = {
+        prop1: 2,
+        prop2: 3
+    }
   </code>
 </pre>
 
+<h2>Intersection types</h2>
+
+<p>la interseccion puede llevar mas de 2 interfaces y no importa si la  propiedad se repite, una interseccion la representamos con "&", los intersectionTypes necesitan tener las todas las propiedades de la interseccion</p>
+<pre>
+  <code class="ts">
+    interface Interface1{
+      prop1: number;
+    }
+    
+    interface Interface2{
+        prop2: number;
+        prop3: number;
+    }
+    
+    interface Interface3{
+        prop2: number;
+    }
+
+    type InterfaceMix = Interface1 & Interface2 & Interface3
+    
+    constinterfaceMix: InterfaceMix = {
+        prop1: 2,
+        prop2: 2,
+        prop3: 2,
+    }
+  </code>
+</pre>
+
+<h2>Function Type</h2>
+
+<p>Un function type representa la estructura que tendrá la función a la cual se aplica el tipo y únicamente funciona para tipos de funciones.</p>
+
+<pre>
+  <code class="ts">
+    //Este alias CallBackError puede ser un error o nulo
+    type CallBackError = Error | null;
+    //CallBack recibe como parametro un error de tipo CallBackError y un response de tipo Object
+    type CallBack = (error: CallBackError, response: Object) => void;
+    type SendRequest = (callback: CallBack) => void
+    //void cuando la funcion no retorna nada (callback es del tipo CallBack)
+    //send request 
+    constsendRequest: SendRequest = (callback: CallBack): void =>{
+        if (callback) {
+            callback(null, {message: 'Todo salio bien'});
+        }
+    }
+  </code>
+</pre>

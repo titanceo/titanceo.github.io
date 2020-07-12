@@ -9,18 +9,18 @@ window.showMenu = function(valor){
   ct.actionCompile('template_submenu',subMenus[valor],'submenu');
 }
 
-window.showContent = function(file){
+window.showContent = function(file,highlight = true){
   
   $.ajax({
     url: file,
     dataType: "html"
   }).done(function(html){
     document.getElementById('content').innerHTML=html;
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block);
-    });
+    if(highlight){
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    }
   });
 }
-
-window.hljs = hljs;
 

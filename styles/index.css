@@ -1,8 +1,20 @@
+.body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+#nav_menu {
+  position: fixed;
+  height: 100%;
+}
+
 #header_menu {
   height: 100px;
 }
 
-#menu ul {
+#menu ul, #submenu ul {
   text-decoration: none;
 }
 
@@ -10,14 +22,34 @@
   padding: 2px;
   font-size: 20px;
   cursor: pointer;
+  color: white;
 }
 
 #menu ul li i {
   font-size: 30px;
+  color: black;
+  margin: 0 10px 0 0;
 }
 
 #menu ul li a {
   text-decoration: none;
 }
 
+#submenu ul li {
+  list-style: none;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  line-height: 3rem;
+  -webkit-transition: -webkit-box-flex .5s;
+  transition: -webkit-box-flex .5s;
+  transition: flex .5s;
+  transition: flex .5s, -webkit-box-flex .5s, -ms-flex .5s;
+  display: inline;
+  cursor: pointer;
+}
+
+p {
+  font-size: 20px;
+}
 /*# sourceMappingURL=index.css.map */
