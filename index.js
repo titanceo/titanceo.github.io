@@ -16,6 +16,11 @@ window.showContent = function(file){
     dataType: "html"
   }).done(function(html){
     document.getElementById('content').innerHTML=html;
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
   });
 }
+
+window.hljs = hljs;
 
